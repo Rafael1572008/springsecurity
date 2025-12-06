@@ -2,6 +2,8 @@ package tech.builrun.springsecurity.model;
 
 
 import jakarta.persistence.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import tech.builrun.springsecurity.controllers.dto.LoginRequest;
 
 
 import java.util.Set;
@@ -76,5 +78,9 @@ public class User {
         public Long getRoleId() {
             return roleId;
         }
+    }
+
+    public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder){
+        return passwordEncoder.matches(loginRequest.password(), this.password);
     }
 }
