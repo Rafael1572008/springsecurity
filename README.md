@@ -1,5 +1,14 @@
 # Comandos Docker: Executar, Parar e Apagar Dados
 
+bcdedit /set hypervisorlaunchtype off
+bcdedit /set hypervisorlaunchtype auto
+wsl --list --verbose
+
+
+## Postman
+https://solar-meteor-573415.postman.co/workspace/Cartola-API~bdb8956c-c6ab-42c2-9605-e7998153e248/request/43462442-0694cc0a-7c56-4566-bd7f-7b090de7c895?action=share&creator=43462442&ctx=documentation
+
+
 ## Executar o Docker Compose
 Inicia todos os serviços em modo *detached*:
 ```bash

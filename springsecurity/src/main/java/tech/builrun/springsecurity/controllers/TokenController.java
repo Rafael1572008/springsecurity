@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import tech.builrun.springsecurity.controllers.dto.LoginRequest;
 import tech.builrun.springsecurity.controllers.dto.LoginResponse;
+import tech.builrun.springsecurity.model.Role;
 import tech.builrun.springsecurity.repository.UserRepository;
 
 import java.time.Instant;
+import java.util.stream.Collectors;
 
 @RestController
 public class TokenController {
@@ -41,11 +43,18 @@ public class TokenController {
         var now = Instant.now();
             var expiresIn = 300L;
 
+
+        var scopes = user.get().getRoles()
+                .stream()
+                .map(Role::getName)
+                .collect(Collectors.joining(""));
+
         /// Atributos do Json, clains
         var clains = JwtClaimsSet.builder()
                 .issuer("Mybackend")
                 .subject(user.get().getUserId().toString())
                 .issuedAt(now)
+                .claim("scope", scopes)
                 .expiresAt(now.plusSeconds(expiresIn))
                 .build();
 

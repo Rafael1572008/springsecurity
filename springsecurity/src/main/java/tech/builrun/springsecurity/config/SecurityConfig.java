@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -29,6 +30,7 @@ import java.security.interfaces.RSAPublicKey;
 
 /// Definições de beans
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Value("${jwt.public.key}")
@@ -47,6 +49,7 @@ public class SecurityConfig {
             /// Para qualquer requisição, necessário o ‘token’
             authorizationManagerRequestMatcherRegistry
                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/users").permitAll()
                     .anyRequest().authenticated()
 
         ).csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
