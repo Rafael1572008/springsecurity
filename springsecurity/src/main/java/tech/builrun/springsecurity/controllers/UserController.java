@@ -23,7 +23,7 @@ import java.util.Set;
 public class UserController {
 
     private final UserRepository userRepository;
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -54,7 +54,7 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_admin')")
     @GetMapping("/users")   /// Rota especial para Admins
     public ResponseEntity<List<User>> listUser(){
         var users = userRepository.findAll();

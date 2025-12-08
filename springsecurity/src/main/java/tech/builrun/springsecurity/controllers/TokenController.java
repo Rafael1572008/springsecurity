@@ -52,7 +52,7 @@ public class TokenController {
         /// Atributos do Json, clains
         var clains = JwtClaimsSet.builder()
                 .issuer("Mybackend")
-                .subject(user.get().getUserId().toString())
+                .subject(user.get().getUserId().toString())  // Name
                 .issuedAt(now)
                 .claim("scope", scopes)
                 .expiresAt(now.plusSeconds(expiresIn))
