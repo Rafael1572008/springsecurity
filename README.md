@@ -1,14 +1,21 @@
 # Spring Security | JWT
 
 ## Virtualização / WSL
+
+Desativa o Hyper-V (requer reinicialização)
+```
 bcdedit /set hypervisorlaunchtype off
-- Desativa o Hyper-V (requer reinicialização)
+```
 
+Reativa o Hyper-V (requer reinicialização)
+```
 bcdedit /set hypervisorlaunchtype auto
-- Reativa o Hyper-V (requer reinicialização)
+```
 
+Lista distribuições WSL e versões
+```
 wsl --list --verbose
-- Lista distribuições WSL e versões
+```
 
 
 ## Postman
@@ -16,18 +23,26 @@ wsl --list --verbose
 
 
 ## Docker Compose
+Inicia todos os serviços em segundo plano (detached)
+```
 docker compose up -d
-- Inicia todos os serviços em segundo plano (detached)
+```
 
+Para os containers sem apagar os dados
+```
 docker compose down
-- Para os containers sem apagar os dados
+```
 
-docker compose down -v
 - Para tudo e remove volumes
 - Apaga completamente os dados do banco
 - Banco será recriado do zero na próxima execução
+```
+docker compose down -v
+```
 
 
 ## Docker
+Lista containers em execução
+```
 docker ps
-- Lista containers em execução
+```
